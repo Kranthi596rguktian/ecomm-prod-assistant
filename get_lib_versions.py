@@ -4,8 +4,7 @@ packages = [
     "langchain-mcp-adapters",
     "mcp",
     "ddgs",
-    "langchain-openai",
-    "langchain"
+    "langchain-openai"
     ]
 for pkg in packages:
     try:
