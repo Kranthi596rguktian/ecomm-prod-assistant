@@ -122,7 +122,7 @@ class DataIngestion:
         vstore, _ = self.store_in_vector_db(documents)
 
         #Optionally do a quick search
-        query = "Can you tell me the low budget iphone?"
+        query   = "Can you tell me the low budget iphone?"
         results = vstore.similarity_search(query)
 
         print(f"\nSample search results for query: '{query}'")
