@@ -181,7 +181,3 @@ This repository does not specify a license in the README. Add a `LICENSE` file i
 
 ---
 
-If you'd like, I can also:
-- Check and standardize package/module names (`product_assistant` vs `prod_assistant`).
-- Add a minimal `Makefile` or helper scripts for common commands.
-
