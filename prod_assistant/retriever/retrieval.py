@@ -87,19 +87,21 @@ if __name__=='__main__':
     
     retrieved_docs = retriever_obj.call_retriever(user_query)
     
+    print(f"\n--- Retrieved {len(retrieved_docs)} Documents ---\n", retrieved_docs[0])
+    
     def _format_docs(docs) -> str:
         if not docs:
             return "No relevant documents found."
         formatted_chunks = []
-        for d in docs:
-            meta = d.metadata or {}
-            formatted = (
-                f"Title: {meta.get('product_title', 'N/A')}\n"
-                f"Price: {meta.get('price', 'N/A')}\n"
-                f"Rating: {meta.get('rating', 'N/A')}\n"
-                f"Reviews:\n{d.page_content.strip()}"
-            )
-            formatted_chunks.append(formatted)
+        # for d in docs:
+        meta = docs.metadata or {}
+        formatted = (
+            f"Title: {meta.get('product_title', 'N/A')}\n"
+            f"Price: {meta.get('price', 'N/A')}\n"
+            f"Rating: {meta.get('rating', 'N/A')}\n"
+            f"Reviews:\n{docs.page_content.strip()}"
+        )
+        formatted_chunks.append(formatted)
         return "\n\n---\n\n".join(formatted_chunks)
     
     retrieved_contexts = [_format_docs(doc) for doc in retrieved_docs]
