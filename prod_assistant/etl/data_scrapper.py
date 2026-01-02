@@ -32,14 +32,14 @@ class FlipkartScraper:
                 driver.find_element(By.XPATH, "//button[contains(text(), '✕')]").click()
                 time.sleep(1)
             except Exception as e:
-                print(f"Error occurred while closing popup: {e}")
+                print("No login popup appeared.")
 
             for _ in range(4):
                 ActionChains(driver).send_keys(Keys.END).perform()
                 time.sleep(1.5)
 
             soup = BeautifulSoup(driver.page_source, "html.parser")
-            review_blocks = soup.select("div._27M-vq, div.col.EPCmJX, div._6K-7Co")
+            review_blocks = soup.select("div.G4PxIA")
             seen = set()
             reviews = []
 
@@ -68,7 +68,7 @@ class FlipkartScraper:
         try:
             driver.find_element(By.XPATH, "//button[contains(text(), '✕')]").click()
         except Exception as e:
-            print(f"Error occurred while closing popup: {e}")
+            print("No login popup appeared.")
 
         time.sleep(2)
         products = []
@@ -76,10 +76,10 @@ class FlipkartScraper:
         items = driver.find_elements(By.CSS_SELECTOR, "div[data-id]")[:max_products]
         for item in items:
             try:
-                title = item.find_element(By.CSS_SELECTOR, "div.KzDlHZ").text.strip()
-                price = item.find_element(By.CSS_SELECTOR, "div.Nx9bqj").text.strip()
-                rating = item.find_element(By.CSS_SELECTOR, "div.XQDdHH").text.strip()
-                reviews_text = item.find_element(By.CSS_SELECTOR, "span.Wphh3N").text.strip()
+                title = item.find_element(By.CSS_SELECTOR, "div.RG5Slk").text.strip()
+                price = item.find_element(By.CSS_SELECTOR, "div.hZ3P6w").text.strip()
+                rating = item.find_element(By.CSS_SELECTOR, "div.MKiFS6").text.strip()
+                reviews_text = item.find_element(By.CSS_SELECTOR, "span.PvbNMB").text.strip()
                 match = re.search(r"\d+(,\d+)?(?=\s+Reviews)", reviews_text)
                 total_reviews = match.group(0) if match else "N/A"
 

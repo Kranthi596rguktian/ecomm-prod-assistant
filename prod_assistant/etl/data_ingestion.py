@@ -18,16 +18,21 @@ class DataIngestion:
         """
         print("Initializing DataIngestion pipeline...")
         self.model_loader=ModelLoader()
+        print("ModelLoader Initialized...")
         self._load_env_variables()
+        print("_load_env_variables Initialized...")
         self.csv_path = self._get_csv_path()
+        print("csv_path Initialized...")
         self.product_data = self._load_csv()
+        print("product_data Initialized...")
         self.config=load_config()
+        print("config Initialized...")
 
     def _load_env_variables(self):
         """
         Load and validate required environment variables.
         """
-        load_dotenv()
+        load_dotenv(dotenv_path = r"C:\Users\Kranthi\OneDrive\Desktop\LLMOPS_Krishnaik\Projects\Project_02\ecomm-prod-assistant\.env")
         
         required_vars = ["GOOGLE_API_KEY", "ASTRA_DB_API_ENDPOINT", "ASTRA_DB_APPLICATION_TOKEN", "ASTRA_DB_KEYSPACE"]
         
@@ -40,14 +45,12 @@ class DataIngestion:
         self.db_application_token = os.getenv("ASTRA_DB_APPLICATION_TOKEN")
         self.db_keyspace = os.getenv("ASTRA_DB_KEYSPACE")
 
-       
-
     def _get_csv_path(self):
         """
         Get path to the CSV file located inside 'data' folder.
         """
-        current_dir = os.getcwd()
-        csv_path = os.path.join(current_dir,'data', 'product_reviews.csv')
+        current_dir = r'C:\Users\Kranthi\OneDrive\Desktop\LLMOPS_Krishnaik\Projects\Project_02\ecomm-prod-assistant\data'
+        csv_path = os.path.join(current_dir, 'product_reviews.csv')
 
         if not os.path.exists(csv_path):
             raise FileNotFoundError(f"CSV file not found at: {csv_path}")
@@ -130,7 +133,7 @@ class DataIngestion:
         for res in results:
             print(f"Content: {res.page_content}\nMetadata: {res.metadata}\n")
 
-# Run if this file is executed directly
-if __name__ == "__main__":
-    ingestion = DataIngestion()
-    ingestion.run_pipeline()
+# # Run if this file is executed directly
+# if __name__ == "__main__":
+#     ingestion = DataIngestion()
+#     ingestion.run_pipeline()

@@ -13,6 +13,7 @@ import asyncio
 
 class ApiKeyManager:
     def __init__(self):
+        load_dotenv(dotenv_path = r"C:\Users\Kranthi\OneDrive\Desktop\LLMOPS_Krishnaik\Projects\Project_02\ecomm-prod-assistant\.env")
         self.api_keys = {
             "OPENAI_API_KEY": os.getenv("OPENAI_API_KEY"),
             "GOOGLE_API_KEY": os.getenv("GOOGLE_API_KEY"),
